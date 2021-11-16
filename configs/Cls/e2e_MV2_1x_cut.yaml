@@ -1,0 +1,35 @@
+INPUT:
+  MIN_SIZE_TRAIN: 224
+  MAX_SIZE_TRAIN: 224
+
+MODEL:
+  DATASET: "med"
+  META_ARCHITECTURE: "Cls"
+
+  BACKBONE:
+    CONV_BODY: "Mobile-V2"
+
+  TRANSFER:
+    IS_OPEN: True
+    METHOD: "hidden"
+    OUTPUT_NAMES: ('backbone.embed_bn', )
+    WEIGHT_VALUES: (1.0, )
+
+  CUT:
+    IS_OPEN: True
+    CUSTOM_OPEN: True
+    MOBILENETV2:
+      STAGE_BLOCKS: [1,2,3,4,3,3,1]
+      DEFAULT_CUT_PERCENTS: [0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5]
+      CUSTOM_CUT_PERCENTS: [0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5]
+
+CUT_SOLVER:
+  BASE_LR: 0.001
+  WARMUP_FACTOR: 0.1
+  WARMUP_ITERS: 500
+  CHECKPOINT_PERIOD: 1000
+  STEPS: (5000,)
+  MAX_ITER: 7100
+
+OUTPUT_ROOT_DIR: "./result"
+CUSTOM_OUTPUT_DIR: "./result/Mobile-V2_med_Iter15100_Pretrain1/TRANSFER_backbone.embed_bn_1.0"
