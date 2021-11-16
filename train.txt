@@ -3,11 +3,11 @@ python3 setup.py build clean
 python3 setup.py build develop
 
 ### train
-CUDA_VISIBLE_DEVICES=0 python3 ./tools/train.py --config-file ./configs/Cls/e2e_MV2_1x.yaml SOLVER.IMS_PER_BATCH 32
+CUDA_VISIBLE_DEVICES=0 python3 ./tools/train.py --config-file ./configs/e2e_MV2_1x.yaml SOLVER.IMS_PER_BATCH 32
 
 ### transfer
-CUDA_VISIBLE_DEVICES=0 python3 ./tools/transfer.py --config-large-file ./configs/Cls/e2e_R50_1x.yaml --config-small-file ./configs/Cls/e2e_MV2_1x_transfer.yaml SOLVER.IMS_PER_BATCH 32
+CUDA_VISIBLE_DEVICES=0 python3 ./tools/transfer.py --config-large-file ./configs/e2e_R50_1x.yaml --config-small-file ./configs/e2e_MV2_1x_transfer.yaml SOLVER.IMS_PER_BATCH 32
 
 ### cut
-CUDA_VISIBLE_DEVICES=0 python3 ./tools/cut.py --config-large-file ./configs/Cls/e2e_R50_1x.yaml --config-small-file ./configs/Cls/e2e_MV2_1x_cut.yaml SOLVER.IMS_PER_BATCH 32
+CUDA_VISIBLE_DEVICES=0 python3 ./tools/cut.py --config-large-file ./configs/e2e_R50_1x.yaml --config-small-file ./configs/e2e_MV2_1x_cut.yaml SOLVER.IMS_PER_BATCH 32
 
